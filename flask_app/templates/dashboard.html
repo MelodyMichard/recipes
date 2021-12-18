@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="col-12 p-4 bg-dark text-light">
+        <div class="d-flex justify-content-between align-items-top mb-3">
+            <h2 class="text-primary">Welcome {{user.first_name}}!</h2>
+            <div>
+                <a href="/recipe/new" class="link-primary">Create</a>
+                <a class="ml-2" href="/logout" class="link-primary">Logout</a>
+            </div>
+        </div>
+        <div class="ml-3">
+            <h5 class="text-primary">These are your recipes</h5>
+            <div class="d-flex justify-content-start flex-column bg-light col-12 rounded text-dark">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Under 30 minutes?</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for recipe in recipes %}
+                            <tr>
+                                <td>{{recipe.name}}</td>
+                                {% if recipe.is_under_thirty == 1 %}
+                                <td>Yes</td>
+                                {% else %}
+                                <td>No</td>
+                                {% endif %}
+                                <td>
+                                    <a class="badge badge-pill badge-secondary" href="/recipe/{{recipe.id}}">View</a>
+                                    <a class="badge badge-pill badge-secondary" href="/recipe/edit/{{recipe.id}}">Edit</a>
+                                    <a class="badge badge-pill badge-danger" href="/recipe/delete/{{recipe.id}}">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

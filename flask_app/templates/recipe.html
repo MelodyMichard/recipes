@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Recipe</title>
+</head>
+<body>
+    <div class="col-12 p-4 bg-dark text-light">
+        <div class="d-flex justify-content-between align-items-top mb-3">
+            <h2 class="text-primary">Welcome {{user.first_name}}</h2>
+            <div>
+                <a href="/dashboard" class="link-primary">Dashboard</a>
+                <a class="ml-2" href="/logout" class="link-primary">Logout</a>
+            </div>
+        </div>
+        <div class="ml-3">
+            <h5 class="text-primary">{{recipe.name}}</h5>
+            <div class="d-flex justify-content-start flex-column bg-light col-12 rounded text-dark">
+                <div class="d-flex justify-content-start">
+                    <div class="col-4 p-2">Description</div>
+                    <div class="col-8 p-2">{{recipe.description}}</div>
+                </div>
+                <div class="d-flex justify-content-start">
+                    <div class="col-4 p-2">Instructions</div>
+                    <div class="col-8 p-2">{{recipe.instructions}}</div>
+                </div>
+                <div class="d-flex justify-content-start">
+                    <div class="col-4 p-2">First prepared on</div>
+                    <div class="col-8 p-2">{{recipe.prepared_at.strftime('%Y-%m-%d')}}</div>
+                </div>
+                <div class="d-flex justify-content-start">
+                    <div class="col-4 p-2">Under 30 minutes?</div>
+                    {% if recipe.is_under_thirty == 1 %}
+                        <div class="col-8 p-2">Yes</div>
+                    {% else %}
+                        <div class="col-8 p-2">No</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

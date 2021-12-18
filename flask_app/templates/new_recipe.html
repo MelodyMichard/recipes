@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Add Recipe</title>
+</head>
+<body>
+    <form action="/recipe/create" method="post" class="col-12 p-4 bg-dark text-light">
+        <div class="d-flex justify-content-between align-items-top">
+            <h2 class="text-primary">Add New Recipe</h2>
+            <div>
+                <a href="/dashboard" class="link-primary">Dashboard</a>
+                <a class="ml-2" href="/logout" class="link-primary">Logout</a>
+            </div>
+        </div>
+        {% with messages = get_flashed_messages(category_filter=['recipe']) %}
+            {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                <strong>Oopsy Poopsy!!!!</strong>
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
+        <div class="d-flex justify-content-start">
+            <div>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea name="description" class="form-control" id="description" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="instructions">Instructions:</label>
+                    <textarea name="instructions" class="form-control" id="instructions" rows="4"></textarea>
+                </div>
+            </div>
+            <div class="ml-5">
+                <div class="form-group">
+                    <label for="prepared_at">First prepared on:</label>
+                    <input type="date" id="prepared_at" name="prepared_at" class="form-control">
+                </div>
+                <div class="form-group">
+                    <p>Under 30 minutes?</p>
+                    <div class="form-check">
+                        <input class="form-check-input" id="yes" type="radio" name="is_under_thirty" value="yes">
+                        <label class="form-check-label" for="yes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" id="no" type="radio" name="is_under_thirty" value="no">
+                        <label class="form-check-label" for="no">No</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="submit" value="Create" class="btn btn-primary">
+    </form>
+</body>
+</html>
